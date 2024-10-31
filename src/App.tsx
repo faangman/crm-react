@@ -1,24 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useEffect, useState} from 'react';
 import './App.css';
+import axios from "axios";
 
 function App() {
+    const [message, setMessage] = useState('')
+    const [error, setError] = useState('')
+
+    useEffect(() => {
+        axios.get('http://localhost:3001/')
+            .then((res) => {
+                console.log(res)
+                // setMessage(res.data)
+            })
+            .catch((err) => {
+                console.log(err)
+                // setError(err)
+            })
+    },[])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      Hello, this is a new crm.
+
     </div>
   );
 }
